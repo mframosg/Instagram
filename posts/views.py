@@ -1,5 +1,5 @@
 """ Posts views """
-from django.http import HttpResponse
+from django.shortcuts import render
 
 # Utilities
 from datetime import datetime
@@ -8,32 +8,35 @@ hour = datetime.now().strftime('%d , %b , %Y - %H:%M hrs')
 
 posts = [
     {
-        'name': 'Blog Post 1',
-        'user': 'User 1',
+        'title': 'Mont Blanc',
+        'user': {
+            'name': 'Yésica Cortés',
+            'picture': 'https://picsum.photos/60/60/?image=1027'
+        },
         'timestamp': hour,
-        'picture': 'http://picsum.photos/200/200/?image=10',
+        'photo': 'https://picsum.photos/800/600?image=1036',
     },
     {
-        'name': 'Blog Post 2',
-        'user': 'User 2',
+        'title': 'Via Láctea',
+        'user': {
+            'name': 'Christian Van der Henst',
+            'picture': 'https://picsum.photos/60/60/?image=1005'
+        },
         'timestamp': hour,
-        'picture': 'http://picsum.photos/200/200/?image=20',
+        'photo': 'https://picsum.photos/800/800/?image=903',
     },
     {
-        'name': 'Blog Post 3',
-        'user': 'User 3',
+        'title': 'Nuevo auditorio',
+        'user': {
+            'name': 'Uriel (thespianartist)',
+            'picture': 'https://picsum.photos/60/60/?image=883'
+        },
         'timestamp': hour,
-        'picture': 'http://picsum.photos/200/200/?image=30',
+        'photo': 'https://picsum.photos/500/700/?image=1076',
     },
 ]
 
+
 def list_posts(request):
     """ List all posts """
-    content = []
-    for post in posts:
-        content.append("""
-            <p><strong>{name}</strong></p>
-            <span>{user} -  <small>{timestamp}</small></span>
-            <figure><img src="{picture}"/></figure>
-        """.format(**post))
-    return HttpResponse('<br>'.join(content))
+    return render(request, 'feed.html', {'posts': posts})
