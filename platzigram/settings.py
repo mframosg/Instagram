@@ -47,6 +47,7 @@ THIRD_PARTY_APPS = (
 LOCAL_APPS = (
 	# Local apps created by us
     'posts',
+    'users',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
