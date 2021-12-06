@@ -1,3 +1,8 @@
+"""Users views"""
+
+from django.contrib.auth import login, authenticate
 from django.shortcuts import render
 
-# Create your views here.
+def login_view(request):
+    """Login view"""
+    return render(request, 'login.html')
