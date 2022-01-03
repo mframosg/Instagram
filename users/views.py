@@ -28,7 +28,7 @@ def login_view(request):
 def logout_view(request):
     """Logout a user"""
     logout(request)
-    return redirect('login')
+    return redirect('login') 
 
 def signup(request):
     if request.method == 'POST':
