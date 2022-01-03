@@ -44,7 +44,6 @@ def signup(request):
         except IntegrityError:
             return render(request, 'users/signup.html', {'error': 'Username is already in use'})
 
-
         user.first_name = request.POST['first_name']
         user.last_name = request.POST['last_name']
         user.email = request.POST['email']
