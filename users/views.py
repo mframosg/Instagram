@@ -3,6 +3,7 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.db.utils import IntegrityError
 
 
 # User Model
@@ -38,8 +39,10 @@ def signup(request):
         if password != password_confirmation:
             return render(request, 'users/signup.html', {'error': 'Password confirmation does not match'})
 
-        
-        user = User.objects.create_user(username=username, password=password)
+        try:        
+            user = User.objects.create_user(username=username, password=password)
+        except IntegrityError:
+            return render(request, 'users/signup.html', {'error': 'Username is already in use'})
 
 
         user.first_name = request.POST['first_name']
